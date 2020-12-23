@@ -1,18 +1,24 @@
 const express = require('express');
-const app = express();
+const helmet = require('helmet');
+const morgan = require('morgan');
 const Joi = require('joi');
+const logger = require('./middlewares/logger');
+const auth = require('./middlewares/auth');
+
+const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
-app.use((req, res, next) => {
-  console.log('Logging...');
-  next();
-});
+if (app.get('env') === 'development') {
+  app.use(morgan('tiny'));
+  console.log('Morgan enabled...');
+}
+app.use(helmet());
 
-app.use((req, res, next) => {
-  console.log('Authenticating...');
-  next();
-});
+app.use(logger);
+app.use(auth);
 
 const courses = [
   { id: 1, name: 'React' },

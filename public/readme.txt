@@ -1,0 +1,1 @@
+This is a readme text file to be read directly from browser 
