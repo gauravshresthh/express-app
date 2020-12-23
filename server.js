@@ -4,6 +4,16 @@ const Joi = require('joi');
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+  console.log('Logging...');
+  next();
+});
+
+app.use((req, res, next) => {
+  console.log('Authenticating...');
+  next();
+});
+
 const courses = [
   { id: 1, name: 'React' },
   { id: 2, name: 'Node' },
