@@ -1,4 +1,5 @@
 const express = require('express');
+const config = require('config');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const Joi = require('joi');
@@ -16,6 +17,11 @@ if (app.get('env') === 'development') {
   console.log('Morgan enabled...');
 }
 app.use(helmet());
+
+// CONFIGURATION
+console.log(`Application Name : ${config.get('name')}`);
+
+console.log(`Mail Server : ${config.get('mail.host')}`);
 
 app.use(logger);
 app.use(auth);
