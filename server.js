@@ -15,8 +15,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-app.use('/api/courses', courses);
-
 if (app.get('env') === 'development') {
   app.use(morgan('tiny'));
   console.log('Morgan enabled...');
@@ -30,6 +28,9 @@ console.log(`Mail Server : ${config.get('mail.host')}`);
 
 app.use(logger);
 app.use(auth);
+
+app.use('/', home);
+app.use('/api/courses', courses);
 
 const PORT = process.env.PORT || 3000;
 
