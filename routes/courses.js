@@ -3,9 +3,15 @@ const router = express.Router();
 const Joi = require('joi');
 
 const courses = [
-  { id: 1, name: 'React' },
-  { id: 2, name: 'Node' },
-  { id: 3, name: 'mongoDB' },
+  { id: 1, name: 'React', sex: 'M' },
+  { id: 2, name: 'Node', sex: 'F' },
+  {
+    id: 3,
+    name: 'mongoDB',
+    sex: 'N/A',
+    uri:
+      'https://images.unsplash.com/photo-1608585269273-5cacd36870f5?ixid=MXwxMjA3fDB8MHx0b3BpYy1mZWVkfDF8dG93SlpGc2twR2d8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+  },
 ];
 
 router.get('/', (req, res) => {
